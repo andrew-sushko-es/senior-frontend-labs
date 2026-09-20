@@ -1,12 +1,12 @@
 export type ProductCategory =
-  | 'Electronics'
-  | 'Home'
-  | 'Sports'
-  | 'Books'
-  | 'Clothing'
-  | 'Food'
-  | 'Automotive'
-  | 'Garden';
+  | "Electronics"
+  | "Home"
+  | "Sports"
+  | "Books"
+  | "Clothing"
+  | "Food"
+  | "Automotive"
+  | "Garden";
 
 export interface Product {
   id: number;
@@ -14,6 +14,7 @@ export interface Product {
   name: string;
   description: string;
   category: ProductCategory;
+  searchValues: string[];
   brand: string;
   price: number;
   stock: number;

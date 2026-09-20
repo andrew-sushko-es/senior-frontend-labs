@@ -4,8 +4,9 @@ import {
   PRODUCT_CATEGORIES,
   PRODUCT_NOUNS,
   WAREHOUSES,
-} from './constants';
-import type { Product } from '../domain/product';
+} from "./constants";
+import type { Product } from "../domain/product";
+import { normalizeSearchValue } from "../utils/productProcessing";
 
 function createSeededRandom(seed: number) {
   let value = seed >>> 0;
@@ -35,20 +36,27 @@ export function generateProducts(count: number): Product[] {
     const price = Math.round((5 + random() * 2495) * 100) / 100;
     const stock = Math.floor(random() * 501);
     const rating = Math.round((1 + random() * 4) * 10) / 10;
-    const updatedAt = new Date(startDate + Math.floor(random() * dateRange)).toISOString();
-    const sku = `${category.slice(0, 3).toUpperCase()}-${String(index + 1).padStart(6, '0')}`;
+    const updatedAt = new Date(
+      startDate + Math.floor(random() * dateRange),
+    ).toISOString();
+    const sku = `${category.slice(0, 3).toUpperCase()}-${String(index + 1).padStart(6, "0")}`;
+    const name = `${adjective} ${noun}`;
+    const description = `${brand} ${noun.toLowerCase()} for professional operations, everyday work, and reliable home use.`;
 
     products.push({
       id: index + 1,
       sku,
-      name: `${adjective} ${noun}`,
-      description: `${brand} ${noun.toLowerCase()} for professional operations, everyday work, and reliable home use.`,
+      name,
+      description,
       category,
       brand,
       price,
       stock,
       rating,
       reviewCount: Math.floor(random() * 10001),
+      searchValues: [name, sku, brand, description, warehouse].map(
+        normalizeSearchValue,
+      ),
       warehouse,
       updatedAt,
     });
