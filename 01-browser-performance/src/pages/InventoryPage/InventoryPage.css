@@ -1,0 +1,12 @@
+.inventory-page { width: min(1400px, calc(100% - 48px)); margin: 0 auto; padding: 48px 0 72px; }
+
+.page-header { padding: 0 0 32px; }
+.page-header h1 { margin: 4px 0 10px; font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -0.045em; }
+.page-header__eyebrow { margin: 0; color: #416e9f; font-size: 0.8rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
+.page-header__description { max-width: 580px; margin: 0; color: #617084; font-size: 1.02rem; line-height: 1.55; }
+
+.applied-sort { margin: 20px 4px; color: #617084; font-size: 0.86rem; }
+
+@media (max-width: 680px) {
+  .inventory-page { width: min(100% - 28px, 1400px); padding-top: 28px; }
+}
