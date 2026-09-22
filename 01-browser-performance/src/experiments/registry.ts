@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { CpuLongTaskExperiment } from "./01-cpu-long-task/CpuLongTaskExperiment";
 import { ReactRenderingExperiment } from "./02-react-rendering/ReactRenderingExperiment";
+import { LayoutThrashingExperiment } from "./03-layout-thrashing/LayoutThrashingExperiment";
 
 export type ExperimentDefinition = {
   id: string;
@@ -27,6 +28,14 @@ export const experimentRegistry: ExperimentDefinition[] = [
     description: "Investigate why small UI changes become expensive at scale.",
     tools: ["React DevTools Profiler", "Chrome Performance"],
     component: ReactRenderingExperiment,
+  },
+  {
+    id: "03-layout-thrashing",
+    number: "03",
+    title: "Layout Thrashing",
+    description: "Investigate why resizing a dense dashboard causes frame drops.",
+    tools: ["Chrome Performance", "Rendering"],
+    component: LayoutThrashingExperiment,
   },
 ];
 
