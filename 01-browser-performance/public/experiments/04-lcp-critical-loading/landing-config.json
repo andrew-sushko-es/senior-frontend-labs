@@ -1,0 +1,9 @@
+{
+  "hero": {
+    "eyebrow": "Operations intelligence",
+    "title": "Make every operational decision with a clearer view.",
+    "description": "Unify shipment, fleet, and fulfillment signals in one workspace so teams can spot exceptions before they become delays.",
+    "imageUrl": "/experiments/04-lcp-critical-loading/operations-dashboard-large.jpg",
+    "imageAlt": "Operations analytics dashboard showing shipment, fleet, and fulfillment data"
+  }
+}

@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { CpuLongTaskExperiment } from "./01-cpu-long-task/CpuLongTaskExperiment";
 import { ReactRenderingExperiment } from "./02-react-rendering/ReactRenderingExperiment";
 import { LayoutThrashingExperiment } from "./03-layout-thrashing/LayoutThrashingExperiment";
+import { LcpCriticalLoadingExperiment } from "./04-lcp-critical-loading/LcpCriticalLoadingExperiment";
 
 export type ExperimentDefinition = {
   id: string;
@@ -36,6 +37,14 @@ export const experimentRegistry: ExperimentDefinition[] = [
     description: "Investigate why resizing a dense dashboard causes frame drops.",
     tools: ["Chrome Performance", "Rendering"],
     component: LayoutThrashingExperiment,
+  },
+  {
+    id: "04-lcp-critical-loading",
+    number: "04",
+    title: "LCP & Critical Loading",
+    description: "Investigate why the primary above-the-fold content appears too late.",
+    tools: ["Network", "Performance", "Lighthouse"],
+    component: LcpCriticalLoadingExperiment,
   },
 ];
 
