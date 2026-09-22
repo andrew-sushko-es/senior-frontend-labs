@@ -3,6 +3,7 @@ import { CpuLongTaskExperiment } from "./01-cpu-long-task/CpuLongTaskExperiment"
 import { ReactRenderingExperiment } from "./02-react-rendering/ReactRenderingExperiment";
 import { LayoutThrashingExperiment } from "./03-layout-thrashing/LayoutThrashingExperiment";
 import { LcpCriticalLoadingExperiment } from "./04-lcp-critical-loading/LcpCriticalLoadingExperiment";
+import { CumulativeLayoutShiftExperiment } from "./05-cls/CumulativeLayoutShiftExperiment";
 
 export type ExperimentDefinition = {
   id: string;
@@ -45,6 +46,15 @@ export const experimentRegistry: ExperimentDefinition[] = [
     description: "Investigate why the primary above-the-fold content appears too late.",
     tools: ["Network", "Performance", "Lighthouse"],
     component: LcpCriticalLoadingExperiment,
+  },
+  {
+    id: "05-cls",
+    number: "05",
+    title: "Cumulative Layout Shift",
+    description:
+      "Investigate why visible content moves unexpectedly during page load.",
+    tools: ["Performance", "Rendering", "Lighthouse"],
+    component: CumulativeLayoutShiftExperiment,
   },
 ];
 
