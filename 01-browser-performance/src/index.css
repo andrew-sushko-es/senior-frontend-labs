@@ -262,6 +262,222 @@ select,
   grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
   margin-top: 20px;
 }
+
+.marketplace-controls,
+.marketplace-results {
+  background: #fff;
+  border: 1px solid #d8e0e8;
+  border-radius: 10px;
+  padding: 22px;
+}
+.marketplace-control-topline,
+.marketplace-toolbar,
+.marketplace-results-heading,
+.marketplace-company-heading,
+.marketplace-card-actions,
+.marketplace-company-title {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.marketplace-dataset label {
+  display: block;
+  margin: 7px 0;
+}
+.marketplace-search {
+  color: #304a61;
+  display: grid;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 6px;
+  margin: 20px 0;
+  max-width: 480px;
+}
+.marketplace-search input,
+.marketplace-filters select {
+  background: #fff;
+  border: 1px solid #b9c9d7;
+  border-radius: 5px;
+  color: #162d42;
+  min-height: 38px;
+  padding: 8px 10px;
+  width: 100%;
+}
+.marketplace-filters {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.marketplace-filters > label {
+  color: #304a61;
+  display: grid;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 6px;
+}
+.marketplace-toggle {
+  align-items: center;
+  display: flex !important;
+  gap: 8px !important;
+}
+.marketplace-toolbar {
+  border-top: 1px solid #e2e9ef;
+  color: #526678;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  padding-top: 16px;
+}
+.watchlist-summary {
+  background: #edf5fb;
+  border-radius: 5px;
+  color: #285878;
+  font-size: 0.88rem;
+  margin: 0;
+  padding: 8px 10px;
+}
+.marketplace-results-heading h2 {
+  margin-bottom: 0;
+}
+.marketplace-results-heading h2 span {
+  color: #6a7c8b;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 8px;
+}
+.marketplace-company-grid {
+  display: grid;
+  gap: 13px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 20px;
+}
+.marketplace-company-card {
+  border: 1px solid #d7e1e9;
+  border-radius: 7px;
+  padding: 17px;
+}
+.marketplace-company-card.is-selected {
+  border-color: #4f88b4;
+  box-shadow: 0 0 0 2px #d9eaf7;
+}
+.marketplace-company-card.is-compact .marketplace-description,
+.marketplace-company-card.is-compact .marketplace-company-stats ul {
+  display: none;
+}
+.marketplace-company-heading {
+  align-items: flex-start;
+}
+.marketplace-company-title {
+  justify-content: flex-start;
+}
+.marketplace-company-title h3 {
+  margin: 0;
+}
+.marketplace-company-heading p,
+.marketplace-description {
+  color: #5f7181;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+.marketplace-description {
+  min-height: 40px;
+  margin: 14px 0;
+}
+.verified-badge,
+.rating {
+  background: #e6f5ed;
+  border-radius: 99px;
+  color: #187348;
+  font-size: 0.73rem;
+  font-weight: 750;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.rating {
+  background: #fff5df;
+  color: #8c5b0d;
+}
+.marketplace-company-details {
+  border-top: 1px solid #e5ebf0;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-top: 12px;
+}
+.marketplace-company-details div {
+  display: flex;
+  font-size: 0.82rem;
+  gap: 10px;
+  justify-content: space-between;
+}
+.marketplace-company-details dd {
+  max-width: 65%;
+}
+.marketplace-company-stats {
+  border-top: 1px solid #e5ebf0;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 14px;
+  padding-top: 12px;
+}
+.marketplace-company-stats div {
+  display: grid;
+  gap: 2px;
+}
+.marketplace-company-stats span,
+.marketplace-company-stats p,
+.marketplace-company-stats li {
+  color: #647889;
+  font-size: 0.73rem;
+}
+.marketplace-company-stats strong {
+  color: #244764;
+  font-size: 0.9rem;
+}
+.marketplace-company-stats p {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+}
+.marketplace-company-stats ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.marketplace-company-stats li {
+  background: #f0f4f7;
+  border-radius: 99px;
+  padding: 3px 6px;
+}
+.marketplace-card-actions {
+  border-top: 1px solid #e5ebf0;
+  font-size: 0.8rem;
+  margin-top: 14px;
+  padding-top: 12px;
+}
+.marketplace-card-actions button {
+  background: #f5f8fa;
+  border: 1px solid #c3d1dc;
+  border-radius: 4px;
+  color: #244764;
+  padding: 5px 7px;
+}
+.marketplace-card-actions label {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+.marketplace-card-actions .text-button {
+  background: transparent;
+  border-color: transparent;
+  color: #1766a3;
+  padding-left: 0;
+}
 .company-card {
   border: 1px solid #d7e1e9;
   border-radius: 7px;
@@ -328,6 +544,15 @@ dd {
   }
   .filter-grid {
     grid-template-columns: 1fr;
+  }
+  .marketplace-filters {
+    grid-template-columns: 1fr;
+  }
+  .marketplace-toolbar,
+  .marketplace-control-topline,
+  .marketplace-card-actions {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .diagnostic {
     align-self: flex-start;

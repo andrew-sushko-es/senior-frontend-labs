@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { CpuLongTaskExperiment } from "./01-cpu-long-task/CpuLongTaskExperiment";
+import { ReactRenderingExperiment } from "./02-react-rendering/ReactRenderingExperiment";
 
 export type ExperimentDefinition = {
   id: string;
@@ -18,6 +19,14 @@ export const experimentRegistry: ExperimentDefinition[] = [
     description: "Investigate a blocking data-processing interaction.",
     tools: ["Chrome Performance"],
     component: CpuLongTaskExperiment,
+  },
+  {
+    id: "02-react-rendering",
+    number: "02",
+    title: "React Rendering",
+    description: "Investigate why small UI changes become expensive at scale.",
+    tools: ["React DevTools Profiler", "Chrome Performance"],
+    component: ReactRenderingExperiment,
   },
 ];
 
