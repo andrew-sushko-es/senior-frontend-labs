@@ -92,6 +92,18 @@ export const experimentRegistry: ExperimentDefinition[] = [
         }),
       ),
   },
+  {
+    id: "07-memory-leaks",
+    number: "07",
+    title: "Memory Leaks",
+    description:
+      "Investigate why memory keeps growing after repeatedly opening and closing a workspace.",
+    tools: ["Memory", "Performance Monitor"],
+    load: () =>
+      import("./07-memory-leaks/MemoryLeaksExperiment").then(
+        ({ MemoryLeaksExperiment }) => ({ default: MemoryLeaksExperiment }),
+      ),
+  },
 ];
 
 export function findExperiment(id: string | null) {
