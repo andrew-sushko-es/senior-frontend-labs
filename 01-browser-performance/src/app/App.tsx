@@ -1,8 +1,5 @@
-import { generateProducts } from '../data/generateProducts';
-import { InventoryPage } from '../pages/InventoryPage/InventoryPage';
-
-const products = generateProducts(100_000);
+import { BrowserPerformanceLabShell } from "../shell/BrowserPerformanceLabShell";
 
 export function App() {
-  return <InventoryPage products={products} />;
+  return <BrowserPerformanceLabShell />;
 }
