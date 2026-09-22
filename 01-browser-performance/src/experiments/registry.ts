@@ -104,6 +104,20 @@ export const experimentRegistry: ExperimentDefinition[] = [
         ({ MemoryLeaksExperiment }) => ({ default: MemoryLeaksExperiment }),
       ),
   },
+  {
+    id: "08-browser-scheduling",
+    number: "08",
+    title: "Browser Scheduling",
+    description:
+      "Investigate why useful background-style work makes the interface temporarily unresponsive.",
+    tools: ["Chrome Performance"],
+    load: () =>
+      import("./08-browser-scheduling/BrowserSchedulingExperiment").then(
+        ({ BrowserSchedulingExperiment }) => ({
+          default: BrowserSchedulingExperiment,
+        }),
+      ),
+  },
 ];
 
 export function findExperiment(id: string | null) {
