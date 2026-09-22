@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { experimentRegistry, findExperiment } from "../experiments/registry";
 
 const selectedTaskKey =
@@ -16,6 +16,30 @@ function readStoredExperimentId() {
 export function BrowserPerformanceLabShell() {
   const [selectedId, setSelectedId] = useState(readStoredExperimentId);
   const selectedExperiment = findExperiment(selectedId);
+  const [LoadedExperiment, setLoadedExperiment] =
+    useState<ComponentType | null>(null);
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    if (!selectedExperiment) {
+      setLoadedExperiment(null);
+      return () => {
+        isCurrent = false;
+      };
+    }
+
+    setLoadedExperiment(null);
+    selectedExperiment.load().then(({ default: Experiment }) => {
+      if (isCurrent) {
+        setLoadedExperiment(() => Experiment);
+      }
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [selectedExperiment]);
 
   const selectExperiment = (id: string) => {
     sessionStorage.setItem(selectedTaskKey, id);
@@ -53,7 +77,6 @@ export function BrowserPerformanceLabShell() {
     );
   }
 
-  const Experiment = selectedExperiment.component;
   return (
     <main className="shell">
       <header className="shell-header">
@@ -71,7 +94,13 @@ export function BrowserPerformanceLabShell() {
           Choose another experiment
         </button>
       </header>
-      <Experiment />
+      {LoadedExperiment ? (
+        <LoadedExperiment />
+      ) : (
+        <p className="experiment-loading" role="status">
+          Loading experiment…
+        </p>
+      )}
     </main>
   );
 }

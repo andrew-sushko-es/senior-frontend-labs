@@ -1,9 +1,6 @@
 import type { ComponentType } from "react";
-import { CpuLongTaskExperiment } from "./01-cpu-long-task/CpuLongTaskExperiment";
-import { ReactRenderingExperiment } from "./02-react-rendering/ReactRenderingExperiment";
-import { LayoutThrashingExperiment } from "./03-layout-thrashing/LayoutThrashingExperiment";
-import { LcpCriticalLoadingExperiment } from "./04-lcp-critical-loading/LcpCriticalLoadingExperiment";
-import { CumulativeLayoutShiftExperiment } from "./05-cls/CumulativeLayoutShiftExperiment";
+
+type ExperimentModule = { default: ComponentType };
 
 export type ExperimentDefinition = {
   id: string;
@@ -11,7 +8,7 @@ export type ExperimentDefinition = {
   title: string;
   description: string;
   tools: string[];
-  component: ComponentType;
+  load: () => Promise<ExperimentModule>;
 };
 
 export const experimentRegistry: ExperimentDefinition[] = [
@@ -21,7 +18,10 @@ export const experimentRegistry: ExperimentDefinition[] = [
     title: "CPU Long Task",
     description: "Investigate a blocking data-processing interaction.",
     tools: ["Chrome Performance"],
-    component: CpuLongTaskExperiment,
+    load: () =>
+      import("./01-cpu-long-task/CpuLongTaskExperiment").then(
+        ({ CpuLongTaskExperiment }) => ({ default: CpuLongTaskExperiment }),
+      ),
   },
   {
     id: "02-react-rendering",
@@ -29,23 +29,40 @@ export const experimentRegistry: ExperimentDefinition[] = [
     title: "React Rendering",
     description: "Investigate why small UI changes become expensive at scale.",
     tools: ["React DevTools Profiler", "Chrome Performance"],
-    component: ReactRenderingExperiment,
+    load: () =>
+      import("./02-react-rendering/ReactRenderingExperiment").then(
+        ({ ReactRenderingExperiment }) => ({
+          default: ReactRenderingExperiment,
+        }),
+      ),
   },
   {
     id: "03-layout-thrashing",
     number: "03",
     title: "Layout Thrashing",
-    description: "Investigate why resizing a dense dashboard causes frame drops.",
+    description:
+      "Investigate why resizing a dense dashboard causes frame drops.",
     tools: ["Chrome Performance", "Rendering"],
-    component: LayoutThrashingExperiment,
+    load: () =>
+      import("./03-layout-thrashing/LayoutThrashingExperiment").then(
+        ({ LayoutThrashingExperiment }) => ({
+          default: LayoutThrashingExperiment,
+        }),
+      ),
   },
   {
     id: "04-lcp-critical-loading",
     number: "04",
     title: "LCP & Critical Loading",
-    description: "Investigate why the primary above-the-fold content appears too late.",
+    description:
+      "Investigate why the primary above-the-fold content appears too late.",
     tools: ["Network", "Performance", "Lighthouse"],
-    component: LcpCriticalLoadingExperiment,
+    load: () =>
+      import("./04-lcp-critical-loading/LcpCriticalLoadingExperiment").then(
+        ({ LcpCriticalLoadingExperiment }) => ({
+          default: LcpCriticalLoadingExperiment,
+        }),
+      ),
   },
   {
     id: "05-cls",
@@ -54,7 +71,26 @@ export const experimentRegistry: ExperimentDefinition[] = [
     description:
       "Investigate why visible content moves unexpectedly during page load.",
     tools: ["Performance", "Rendering", "Lighthouse"],
-    component: CumulativeLayoutShiftExperiment,
+    load: () =>
+      import("./05-cls/CumulativeLayoutShiftExperiment").then(
+        ({ CumulativeLayoutShiftExperiment }) => ({
+          default: CumulativeLayoutShiftExperiment,
+        }),
+      ),
+  },
+  {
+    id: "06-bundle-network",
+    number: "06",
+    title: "Bundle & Network",
+    description:
+      "Investigate why the application downloads so much JavaScript before optional features are used.",
+    tools: ["Network", "Coverage", "Performance", "Bundle Analyzer"],
+    load: () =>
+      import("./06-bundle-network/BundleNetworkExperiment").then(
+        ({ BundleNetworkExperiment }) => ({
+          default: BundleNetworkExperiment,
+        }),
+      ),
   },
 ];
 
